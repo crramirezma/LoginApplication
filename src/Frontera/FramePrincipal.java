@@ -5,20 +5,30 @@
  */
 package Frontera;
 
+import Entidad.Sistema;
+import Entidad.Usuario;
+import java.util.ArrayList;
+
 /**
  *
  * @author cristian
+ * @crramirezma
  */
 public class FramePrincipal extends javax.swing.JFrame {
     
     private Registro registro =new Registro();
     private Ingreso ingreso=new Ingreso();
-            
+        
+
+    public static Sistema sistema=new Sistema();
+    
+    
     /**
      * Creates new form FramePrincipal
      */
     public FramePrincipal() {
         initComponents();
+        inicializacion();
     }
 
     /**
@@ -149,7 +159,28 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
+    public void inicializacion(){
+        ArrayList<Usuario> usuarios=new ArrayList<>();
+        
+        //generando usuarios con for
+        Usuario usuario;
+        for (int i = 0; i < 4; i++) {
+            usuario=new Usuario();
+            usuario.setNombre("Federico"+i);
+            usuario.setPassword((12345*i)+"");
+            usuarios.add(usuario);
+        }
+        
+        sistema.setUsuarios(usuarios);
+        
+        for (Usuario usario:sistema.getUsuarios()) {
+            System.out.println(usario.getNombre());
+            System.out.println(usario.getPassword());
+            System.out.println("--------------------");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ingresoBt;
     private javax.swing.JPanel jPanel1;
