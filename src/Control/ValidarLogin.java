@@ -5,10 +5,10 @@
  */
 package Control;
 
-import Entidad.Sistema;
+//import Entidad.Sistema;
 import Entidad.Usuario;
-import Frontera.FramePrincipal;
-
+//import Frontera.FramePrincipal;
+import DAO.UsuarioDAO;
 /**
  *
  * @author cristian
@@ -16,7 +16,8 @@ import Frontera.FramePrincipal;
  */
 public class ValidarLogin {
     
-    private Sistema sistema=FramePrincipal.sistema;
+    //private Sistema sistema=FramePrincipal.sistema;
+    private UsuarioDAO dao=new UsuarioDAO();
     
     public ValidarLogin() {
     }
@@ -28,13 +29,15 @@ public class ValidarLogin {
         if(!verificarLongitudPassword(usuario.getPassword())){
             return("Longitud contraseña incorrecta");
         }
-        for(Usuario user:sistema.getUsuarios()){
+        /*for(Usuario user:sistema.getUsuarios()){
             if(user.getNombre().equals(usuario.getNombre())
                     &&user.getPassword().equals(usuario.getPassword())){
                 return("Bienvenido");
             }
+        }*/
+        if(dao.leer(usuario)!=null){
+            return("Bienvenido");
         }
-        
         return ("Datos incorrectos");
     }
     public boolean verificarLongitudNombre(String nombre){
