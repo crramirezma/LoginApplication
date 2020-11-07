@@ -29,12 +29,6 @@ public class ValidarLogin {
         if(!verificarLongitudPassword(usuario.getPassword())){
             return("Longitud contraseña incorrecta");
         }
-        /*for(Usuario user:sistema.getUsuarios()){
-            if(user.getNombre().equals(usuario.getNombre())
-                    &&user.getPassword().equals(usuario.getPassword())){
-                return("Bienvenido");
-            }
-        }*/
         if(dao.leer(usuario)!=null){
             return("Bienvenido");
         }

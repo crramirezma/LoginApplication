@@ -55,18 +55,15 @@ public class UsuarioDAO {
         EntityManager em=entity_mf.createEntityManager();
         Usuario usuario=null;
         
-        Query q=em.createQuery("Select u form Usuario u "+
-                "WHERE u.nombre LIKE :nombre"+
-                " AND u.password LIKE :password")
-                .setParameter("nombre",par.getNombre())
-                .setParameter("password", par.getPassword());
-                
+        Query q=em.createQuery("Select * from ADMIN_APP.Usuarios  WHERE nombre ='"+par.getNombre()+"' AND password = '"+par.getPassword()+"'");
+        
         try {
             usuario=(Usuario) q.getSingleResult();
         }catch(NonUniqueResultException e) {
             usuario=(Usuario)q.getResultList().get(0);
         }catch (Exception e) {
             e.printStackTrace();
+            
         }finally{
             em.close();
             return usuario;
