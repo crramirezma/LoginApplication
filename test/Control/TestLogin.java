@@ -90,10 +90,9 @@ public class TestLogin {
     @Test
     public void testNombre(){
         Usuario u=new Usuario();
-        //toca probar con usuario existentes dentro de la base, por lo que usare
-        //alguno que ya halla creado yo, recalco, yo no cree los mismos que el profe
-        u.setNombre("Carl0");
-        u.setPassword("12340");
+        //probando con usuario no existente
+        u.setNombre("Henry");
+        u.setPassword("12345");
         assertEquals(validarLogin.verificarLogin(u),DATOS_INCORRECTOS);
     }
 
@@ -102,4 +101,43 @@ public class TestLogin {
     //
     // @Test
     // public void hello() {}
+    
+    
+    
+    @Test
+    public void testContrasenia(){
+        Usuario u=new Usuario();
+        
+        //probando con usuario creado pero contrasena erronea
+        u.setNombre("Carl0");
+        u.setPassword("1234");
+        assertEquals(validarLogin.verificarLogin(u), DATOS_INCORRECTOS);
+    }
+    
+    @Test
+    public void testDatos(){
+        Usuario u=new Usuario();
+        u.setNombre("Henry");
+        u.setPassword("A234");
+        assertEquals(validarLogin.verificarLogin(u), DATOS_INCORRECTOS);
+    }
+    
+    //crramirezma
+    @Test
+    public void testTodoCorrecto(){
+       Usuario u=new Usuario();
+        
+        //usuario bien
+        u.setNombre("Carl0");
+        u.setPassword("12340");
+        assertEquals(validarLogin.verificarLogin(u), USUARIO_AUTORIZADO);
+        
+        u.setNombre("Carl1");
+        u.setPassword("12341");
+        assertEquals(validarLogin.verificarLogin(u), USUARIO_AUTORIZADO);
+        
+        u.setNombre("Carl2");
+        u.setPassword("12342");
+        assertEquals(USUARIO_AUTORIZADO,validarLogin.verificarLogin(u));
+    }
 }
